@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Transition
+comment1.params=sr\ a\ dest
+comment1.target=Transition(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ toString()
+numComments=3
