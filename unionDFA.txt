@@ -11,8 +11,10 @@ s2p1
 initial_state:
 s0p0
 accepting_states:
+s0p0
 s1p0
 s1p1
+s2p0
 transitions:
 s0p0 a s1p0
 s0p1 a s1p1

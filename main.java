@@ -10,8 +10,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
+        public static void main(String[] args) {
 
-    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter file name for DFA 1: ");
+        String file1 = input.nextLine();
+
+        while(!file1.endsWith(".txt")){
+            System.out.println("Incorrect file format. Please enter a .txt file:");
+            file1 = input.nextLine();
+        }
+
+        System.out.println("Enter file name for DFA 2: ");
+        String file2 = input.nextLine();
+
+        while(!file2.endsWith(".txt")){
+            System.out.println("Incorrect file format. Please enter a .txt file:");
+            file2 = input.nextLine();
+        }
 
         ArrayList<String> alphabetOne = new ArrayList<String>();
         ArrayList<StateDFA> D1states = new ArrayList<StateDFA>();
@@ -22,7 +39,7 @@ public class main {
         String temp;
 
         try{
-            File myFile = new File("input4.txt");
+            File myFile = new File(file1);
             
             Scanner sc = new Scanner(myFile);
 
@@ -122,12 +139,11 @@ public class main {
         ArrayList<StateDFA> D2states = new ArrayList<StateDFA>();
         ArrayList<Transition> D2Transitions = new ArrayList<Transition>();
 
-        
         String line2;
         String temp2;
 
         try{
-            File myFile = new File("input3.txt");
+            File myFile = new File(file2);
             
             Scanner sc = new Scanner(myFile);
 
@@ -181,15 +197,15 @@ public class main {
                     }
                     
                    int counter = 0;
-                   for(StateDFA state : D1states) {
+                   for(StateDFA state : D2states) {
                        if (state.stateID.equals(line)){
                            if (state.isStart != true) {
                                StateDFA acceptSet = new StateDFA(line, false, true); 
-                               D1states.set(counter, acceptSet);
+                               D2states.set(counter, acceptSet);
                            }
                            else {
                                StateDFA acceptSet = new StateDFA(line, true, true); 
-                               D1states.set(counter, acceptSet); 
+                               D2states.set(counter, acceptSet); 
                            }
                        }
                        counter++;
@@ -298,7 +314,7 @@ public class main {
 
            
             writer.close();
-            System.out.println("Successfully created UnionDFA in output.txt");
+            System.out.println("Successfully created UnionDFA in unionDFA.txt");
 
           } catch (IOException e) {
             System.out.println("An error occurred.");
