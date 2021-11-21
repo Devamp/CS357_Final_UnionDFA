@@ -1,0 +1,15 @@
+alphabet:
+b
+a
+states:
+t0
+t1
+initial_state:
+t0
+accepting_states:
+t1
+transitions:
+t0 a t1
+t0 b t1
+t1 a t0
+t1 b t0

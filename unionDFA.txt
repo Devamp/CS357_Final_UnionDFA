@@ -2,29 +2,29 @@ alphabet:
 a
 b
 states:
-s0p0
-s0p1
-s1p0
-s1p1
-s2p0
-s2p1
+q1t0
+q1t1
+q2t0
+q2t1
+q3t0
+q3t1
 initial_state:
-s0p0
+q1t0
 accepting_states:
-s0p0
-s1p0
-s1p1
-s2p0
+q1t1
+q2t0
+q2t1
+q3t1
 transitions:
-s0p0 a s1p0
-s0p1 a s1p1
-s0p0 b s2p1
-s0p1 b s2p0
-s1p0 a s1p0
-s1p1 a s1p1
-s1p0 b s1p1
-s1p1 b s1p0
-s2p0 a s2p0
-s2p1 a s2p1
-s2p0 b s2p1
-s2p1 b s2p0
+q0t0 a q0t1
+q0t1 a q0t0
+q0t0 b q1t1
+q0t1 b q1t0
+q1t0 b q1t1
+q1t1 b q1t0
+q1t0 a q2t1
+q1t1 a q2t0
+q2t0 a q1t1
+q2t1 a q1t0
+q2t0 b q1t1
+q2t1 b q1t0
