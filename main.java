@@ -1,3 +1,14 @@
+/*
+ * @Author: Devam Patel and Harrison Winters
+ * @Date: 11/22/2021 
+ * 
+ * This program takes in two distinct DFA as a .txt file and returns the union of those two DFAs in the
+ * unionDFA.txt file. 
+ * 
+ * Program does not do any error checking with respect to FILE I/O or proper DFA descriptions.
+ * 
+ */
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -131,9 +142,7 @@ public class main {
             
         } catch (FileNotFoundException e){
             System.out.println("File opening Error");
-        } catch (IOException e ){
-            System.out.println("File IO");
-        }
+        } 
 
         ArrayList<String> alphabetTwo = new ArrayList<String>();
         ArrayList<StateDFA> D2states = new ArrayList<StateDFA>();
@@ -229,12 +238,9 @@ public class main {
 
         } catch (FileNotFoundException e){
             System.out.println("File opening Error");
-        } catch (IOException e ){
-            System.out.println("File IO");
         }
 
         ArrayList<StateDFA> unionStates = new ArrayList<StateDFA>();
-
         for(int q = 0; q < D1states.size(); q++){ // loop q
             for (int r = 0; r < D2states.size(); r++) { // loop r
             
@@ -252,11 +258,8 @@ public class main {
                     unionAccept = true;
                 }
                 
-                unionStates.add(new StateDFA(unionName, unionStart, unionAccept));
-                
+                unionStates.add(new StateDFA(unionName, unionStart, unionAccept));    
             }
-
-            
         }
 
 

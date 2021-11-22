@@ -1,6 +1,6 @@
 alphabet:
-b
 a
+b
 states:
 t0
 t1
