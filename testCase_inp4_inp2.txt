@@ -1,0 +1,40 @@
+alphabet:
+a
+b
+states:
+s0r0
+s0r1
+s0r2
+s1r0
+s1r1
+s1r2
+s2r0
+s2r1
+s2r2
+initial_state:
+s0r0
+accepting_states:
+s0r2
+s1r0
+s1r1
+s1r2
+s2r2
+transitions:
+s0r0 a s1r0
+s0r1 a s1r2
+s0r2 a s1r1
+s0r0 b s2r1
+s0r1 b s2r0
+s0r2 b s2r2
+s1r0 a s1r0
+s1r1 a s1r2
+s1r2 a s1r1
+s1r0 b s1r1
+s1r1 b s1r0
+s1r2 b s1r2
+s2r0 a s2r0
+s2r1 a s2r2
+s2r2 a s2r1
+s2r0 b s2r1
+s2r1 b s2r0
+s2r2 b s2r2

@@ -315,7 +315,6 @@ public class main {
                 writer.write(r.toString() + "\n");
             }     
 
-           
             writer.close();
             System.out.println("Successfully created UnionDFA in unionDFA.txt");
 

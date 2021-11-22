@@ -1,0 +1,30 @@
+alphabet:
+a
+b
+states:
+q1p0
+q1p1
+q2p0
+q2p1
+q3p0
+q3p1
+initial_state:
+q1p0
+accepting_states:
+q1p0
+q2p0
+q2p1
+q3p0
+transitions:
+q0p0 a q0p0
+q0p1 a q0p1
+q0p0 b q1p1
+q0p1 b q1p0
+q1p0 b q1p1
+q1p1 b q1p0
+q1p0 a q2p0
+q1p1 a q2p1
+q2p0 a q1p0
+q2p1 a q1p1
+q2p0 b q1p1
+q2p1 b q1p0
