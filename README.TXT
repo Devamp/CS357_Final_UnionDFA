@@ -12,8 +12,8 @@ Test Cases:
 
 How to run the program:
 	1. Program can be compiled by the following command:
-		javac main.java
+		javac UnionDFA.java
 	2. Program can be ran by the following command:
-		java main
+		java UnionDFA
 	3. Enter the two names of the .txt DFA files as prompted.
     4. Result will be returned in unionDFA.txt
