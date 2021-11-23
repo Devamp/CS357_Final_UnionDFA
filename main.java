@@ -354,15 +354,15 @@ public class main {
 
                 unionName = D1states.get(q).stateID + D2states.get(r).stateID; // get UnionName
             
-                if (D1states.get(q).isStart && D2states.get(r).isStart) {
+                if (D1states.get(q).isStart && D2states.get(r).isStart) { // determine if its initial or not
                     unionStart = true;
                 }
 
-                if (D1states.get(q).isAccept || D2states.get(r).isAccept) {
+                if (D1states.get(q).isAccept || D2states.get(r).isAccept) { // determine if its accept or not
                     unionAccept = true;
                 }
                 
-                unionStates.add(new StateDFA(unionName, unionStart, unionAccept));    
+                unionStates.add(new StateDFA(unionName, unionStart, unionAccept)); // add to unionStates list
             }
         }
 
@@ -371,11 +371,11 @@ public class main {
         for (int qt = 0; qt < D1Transitions.size(); qt ++) {
             for (int rt = 0; rt < D2Transitions.size(); rt ++) {
                 boolean matching = false;
-                if (D1Transitions.get(qt).alpha.equals(D2Transitions.get(rt).alpha)) {
+                if (D1Transitions.get(qt).alpha.equals(D2Transitions.get(rt).alpha)) { // check transition symbol match
                     matching = true;
                 }
 
-                if (matching) {
+                if (matching) { // if they match, concat the original sources and destination states to make union transition
                     String unionSrc = D1Transitions.get(qt).source + D2Transitions.get(rt).source;
                     String unionDest = D1Transitions.get(qt).dest + D2Transitions.get(rt).dest;
 
