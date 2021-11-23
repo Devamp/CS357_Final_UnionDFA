@@ -2,9 +2,9 @@ alphabet:
 a
 b
 states:
+q0
 q1
 q2
-q3
 initial_state:
 q1
 accepting_states:

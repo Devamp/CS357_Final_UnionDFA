@@ -5,7 +5,6 @@
  * This program takes in two distinct DFA as a .txt file and returns the union of those two DFAs in the
  * unionDFA.txt file. 
  * 
- * Program does not do any error checking with respect to FILE I/O or proper DFA descriptions.
  * 
  */
 
@@ -41,10 +40,14 @@ public class main {
             file2 = input.nextLine();
         }
 
+        while (file2.equalsIgnoreCase(file1)){
+            System.out.println("Files cannot be the same! Enter another file name:");
+            file2 = input.nextLine();
+        }
+
         ArrayList<String> alphabetOne = new ArrayList<String>();
         ArrayList<StateDFA> D1states = new ArrayList<StateDFA>();
         ArrayList<Transition> D1Transitions = new ArrayList<Transition>();
-
 
         String line;
         String temp;
@@ -64,9 +67,8 @@ public class main {
                         break;
                     }
                     alphabetOne.add(line);
-                   /// System.out.println(line);
-                    
                 }
+
 
                 while (temp.equalsIgnoreCase("states:")){
                     line = sc.nextLine();
@@ -88,6 +90,7 @@ public class main {
                     }
                 
                     int counter = 0;
+                    boolean hasMatch = false;
                     for(StateDFA state : D1states) {
                         if (state.stateID.equals(line)){
                             StateDFA startStateSet = new StateDFA(line, true, false); 
@@ -96,7 +99,17 @@ public class main {
                         }
                         counter++;
                     }
-                    
+
+                    // Make sure initial state is part of Q given set of state
+                    for (StateDFA x : D1states){
+                        if(line.equalsIgnoreCase(x.stateID)){
+                            hasMatch = true;
+                        } 
+                    }
+                    if(!hasMatch) {
+                        System.out.println("ERROR: Invalid INITIAL STATE in File 1");
+                        System.exit(0);
+                    }
                 }
 
                 while (temp.equalsIgnoreCase("accepting_states:")){
@@ -129,6 +142,41 @@ public class main {
                     String from = trParts[0];
                     String on = trParts[1];
                     String to = trParts[2];
+
+                    boolean hasMatch = false;
+                    for(StateDFA state : D1states) {
+                        if (state.stateID.equals(from)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect source state in transitions for File 1!");
+                        System.exit(0);
+                    }
+
+
+                    hasMatch = false;
+                    for(StateDFA state : D1states) {
+                        if (state.stateID.equals(to)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect destination state in transitions for File 1!");
+                        System.exit(0);
+                    }
+
+                    hasMatch = false;
+                    for(String alpha: alphabetOne) {
+                        if (alpha.equals(on)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect transition symbol in transitions for File 1!");
+                        System.exit(0);
+                    }
+
 
                     Transition tr = new Transition(from, on, to);
                     temp = line;
@@ -179,7 +227,7 @@ public class main {
                     D2states.add(new StateDFA(line, false, false));
                 }
 
-                
+                boolean hasMatch = false;
                 while (temp.equalsIgnoreCase("initial_state:")){
                     line = sc.nextLine();
                     if (line.equalsIgnoreCase("accepting_states:")) {
@@ -194,6 +242,17 @@ public class main {
                             
                         }
                         counter++;
+                    }
+
+                    // Make sure initial state is part of Q given set of state
+                    for (StateDFA x : D2states){
+                        if(line.equalsIgnoreCase(x.stateID)){
+                            hasMatch = true;
+                        } 
+                    }
+                    if(!hasMatch) {
+                        System.out.println("ERROR: Invalid INITIAL STATE in File 2");
+                        System.exit(0);
                     }
                     
                 }
@@ -228,6 +287,42 @@ public class main {
                     String on = trParts[1];
                     String to = trParts[2];
 
+
+                    hasMatch = false;
+                    for(StateDFA state : D2states) {
+                        if (state.stateID.equals(from)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect source state in transitions for File 2!");
+                        System.exit(0);
+                    }
+
+
+                    hasMatch = false;
+                    for(StateDFA state : D2states) {
+                        if (state.stateID.equals(to)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect destination state in transitions for File 2!");
+                        System.exit(0);
+                    }
+
+                    hasMatch = false;
+                    for(String alpha: alphabetTwo) {
+                        if (alpha.equals(on)){
+                            hasMatch = true;
+                        }
+                    }
+                    if (!hasMatch) {
+                        System.out.println("ERROR: Incorrect transition symbol in transitions for File 2!");
+                        System.exit(0);
+                    }
+
+
                     Transition tr = new Transition(from, on, to);
                     temp = line;
                     D2Transitions.add(tr);        
@@ -239,6 +334,15 @@ public class main {
         } catch (FileNotFoundException e){
             System.out.println("File opening Error");
         }
+
+        
+        // check to make sure alphabets of DFAs are the same
+        if(!(alphabetOne.containsAll(alphabetTwo)) || !(alphabetTwo.containsAll(alphabetOne))){
+            System.out.println("ERROR: Input alphabets are not the same!");
+            System.exit(0);
+        }
+        
+
 
         ArrayList<StateDFA> unionStates = new ArrayList<StateDFA>();
         for(int q = 0; q < D1states.size(); q++){ // loop q

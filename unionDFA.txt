@@ -2,23 +2,23 @@ alphabet:
 a
 b
 states:
+q0r0
+q0r1
+q0r2
 q1r0
 q1r1
 q1r2
 q2r0
 q2r1
 q2r2
-q3r0
-q3r1
-q3r2
 initial_state:
 q1r0
 accepting_states:
+q0r2
 q1r2
 q2r0
 q2r1
 q2r2
-q3r2
 transitions:
 q0r0 a q0r0
 q0r1 a q0r2
