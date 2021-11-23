@@ -16,4 +16,4 @@ How to run the program:
 	2. Program can be ran by the following command:
 		java UnionDFA
 	3. Enter the two names of the .txt DFA files as prompted.
-    4. Result will be returned in unionDFA.txt
+   	4. Result will be returned in unionDFA.txt
