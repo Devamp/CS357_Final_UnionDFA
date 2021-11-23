@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+public class UnionDFA {
         public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -189,7 +189,7 @@ public class main {
                 
                 }
             }
-        
+            input.close(); // close input
             sc.close(); // once finished, close scanner.
             
         } catch (FileNotFoundException e){ // catch any FILE errors
